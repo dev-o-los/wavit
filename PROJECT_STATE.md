@@ -417,6 +417,26 @@ cd /Users/utkarsh/Documents/wavit
 
 ## 7. Change Log & Activity History
 
+### [2026-10-30] — Session 4: Android Emulator Setup & SDK Config
+- **Added `local.properties`:** Configured `sdk.dir=/Users/utkarsh/Library/Android/sdk` so Gradle and Android Studio resolve the local Android SDK.
+- **Documented Emulator Operations:** Documented dual-terminal operational procedure (running Ktor backend alongside Android emulator) and how the Android loopback IP `10.0.2.2:8080` transparently bridges requests from the emulator to the host Mac's backend.
+
+### [2026-10-30] — Session 3: Phase 2 Step 2 — Android Jetpack Compose Frontend
+- **Configured Android Target & Module:** Added `androidTarget()` to `:shared` and created `:androidApp` with AGP 8.7.3, Jetpack Compose Material 3, Navigation Compose, Coil, and Media3 ExoPlayer.
+- **Created Universal KMP Repository:** Added `WavitRepository` interface and `WavitApiRepository` client in `shared/commonMain` to cleanly bridge the UI to the KMP backend.
+- **Implemented Search Screen (`SearchScreen.kt` & `SearchViewModel.kt`):**
+  - Auto-focusing pinned top search bar with keyboard auto-open via `FocusRequester` and `LocalSoftwareKeyboardController`.
+  - IME Search action triggering asynchronous queries via coroutines.
+  - Scrollable `LazyColumn` showing title, artist, duration, and album artwork with `Coil`.
+  - Loading, error, and empty result state handling.
+- **Implemented Player Screen (`PlayerScreen.kt` & `PlayerViewModel.kt`):**
+  - Prominent square artwork with drop shadow.
+  - Autoplay triggered upon screen arrival via `LaunchedEffect`.
+  - Real-time seek `Slider` with progress tracking (`300ms` polling) and smooth user-drag handling.
+  - Large circular Play/Pause toggle button in sync with ExoPlayer playback state.
+  - Clean `AndroidViewModel` lifecycle management ensuring ExoPlayer release without memory leaks.
+- **Created Navigation & Host (`Screen.kt`, `WavitNavHost.kt`, `MainActivity.kt`):** URL-safe argument encoding/decoding and edge-to-edge Compose rendering.
+
 ### [2026-10-30] — Session 2: Live InnerTube API Verification ("Attention" by Charlie Puth)
 - **Live Search Verification:** Tested real YouTube Music search with query `"attention by charlie puth"`.
   - Returned **20 candidates**.
